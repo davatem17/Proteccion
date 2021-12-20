@@ -1,35 +1,62 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, {useState} from 'react';
+import {Link, useNavigate} from "react-router-dom";
+import axios from 'axios';
 
 const Register = () => {
+    const navigate = useNavigate();
+    const API = 'http://localhost:3000/api/auth/sign-up';
+
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
+
+    const handleChange = (e) => {
+        setUser({
+            ...user,
+            [e.target.name]: e.target.value
+        });
+    }
+    const{name, email, password} = user;
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post(API, {name, email,password}).then(res => {
+            console.log(res);
+            navigate('/');
+        }).catch(err => {
+            console.log('error')
+        })
+         
+    }
     return ( 
-        <section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card bg-dark text-white" style={{borderRadius: "1rem"}}>
-                    <div class="card-body p-3 text-center">
-                        <div class="mb-md-5 mt-md-4 pb-5">
-                            <h2 class="fw-bold mb-2 text-uppercase">Registrarse</h2>
+        <section className="vh-100 gradient-custom">
+    <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div className="card bg-dark text-white" style={{borderRadius: "1rem"}}>
+                    <div className="card-body p-3 text-center">
+                        <div className="mb-md-5 mt-md-4 pb-5">
+                            <h2 className="fw-bold mb-2 text-uppercase">Registrarse</h2>
                             <br />
-                            <form class="login100-form validate-form" method='post' action='index.php'>
-                                <div class="form-outline form-white mb-4">
-                                    <input type="text"  class="form-control form-control-lg"
-                                        id="username" name="username" placeholder="Usuario" />
-                                    <label class="form-label">Usuario</label>
+                            <form className="login100-form validate-form" onSubmit={handleSubmit}>
+                                <div className="form-outline form-white mb-4">
+                                    <input type="text"  className="form-control form-control-lg"
+                                        name="name" placeholder="Usuario" onChange={handleChange}/>
+                                    <label className="form-label">Usuario</label>
                                 </div>
-                                <div class="form-outline form-white mb-4">
-                                    <input type="email"  class="form-control form-control-lg"
-                                        id="username" name="username" placeholder="Correo electronico" />
-                                    <label class="form-label">Correo</label>
+                                <div className="form-outline form-white mb-4">
+                                    <input type="email"  className="form-control form-control-lg"
+                                         name="email" placeholder="Correo electronico" onChange={handleChange}/>
+                                    <label className="form-label">Correo</label>
                                 </div>
-                                <div class="form-outline form-white mb-4">
-                                    <input type="password"  class="form-control form-control-lg"
+                                <div className="form-outline form-white mb-4">
+                                    <input type="password"  className="form-control form-control-lg"
                                         name="password" pattern="[A-Za-z0-9_-]{1,15}" requiered
-                                        placeholder="Contraseña" />
-                                    <label class="form-label" for="typePasswordX">Contraseña</label>
+                                        placeholder="Contraseña" onChange={handleChange}/>
+                                    <label className="form-label" for="typePasswordX">Contraseña</label>
                                 </div>
-                                <button class="btn btn-outline-light btn-lg px-5" type="submit">Crear Cuenta</button>
+                                <button className="btn btn-outline-light btn-lg px-5" type="submit">Crear Cuenta</button>
                             </form><br/>
                             <Link to="/" className="btn btn-outline-light btn-lg px-5 btn-danger">Regresar</Link>
                         </div>
