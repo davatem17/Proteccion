@@ -7,9 +7,9 @@ import AppContext from './context/AppContext';
 import useInitialState from './hooks/useInitialState';
 
 function App() {
- 
+  const initialState = useInitialState();
   return (
-    
+    <AppContext.Provider value={initialState}>
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
@@ -18,7 +18,7 @@ function App() {
       </Routes>
     </BrowserRouter>
 
-    
+    </AppContext.Provider>
   );
 }
 

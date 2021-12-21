@@ -7,7 +7,7 @@ const Login = () => {
     const navigate = useNavigate();
     const {addToEq} = useContext(AppContext);
     const API = 'http://localhost:3000/api/auth/sign-in';
-    const [login, setLogin] = useState({});
+ 
     const [user, setUser] = useState({
         email: '',
         password: ''
@@ -24,7 +24,7 @@ const Login = () => {
         e.preventDefault();
         axios.post(API, {email,password}).then(res => {
             console.log(res);
-            setLogin(res);
+            addToEq(res.data.token);
             navigate('/home');
         }).catch(err => {
             console.log('error')

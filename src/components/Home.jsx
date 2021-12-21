@@ -1,7 +1,14 @@
-import React from 'react';
-
+import React, {useContext} from 'react';
+import AppContext  from '../context/AppContext';
+import Hierba from './Hierba';
 const Home = () => {
-    return ( <h1>Hola</h1> );
+    const { state } = useContext(AppContext);
+
+    return ( <>
+        {Object.keys(state.token).length > 0 ? <Hierba/> : <h1>No estas logeado</h1>}
+    </>
+        
+     );
 }
  
-export default Home;<h1>Hola</h1>
+export default Home;
