@@ -3,10 +3,14 @@ import {Link, useNavigate} from "react-router-dom";
 import AppContext from "../context/AppContext";
 import axios from 'axios';
 
+const dev = process.env.API_DEV;
+const API_DEV = 'http://localhost:3000';
+const API_VIRTUAL = 'http://192.168.100.85:3000'
+
 const Login = () => {
     const navigate = useNavigate();
     const {addToEq} = useContext(AppContext);
-    const API = 'http://192.168.100.85:3000/api/auth/sign-in';
+    const API = `${API_DEV}/api/auth/sign-in`;
  
     const [user, setUser] = useState({
         email: '',

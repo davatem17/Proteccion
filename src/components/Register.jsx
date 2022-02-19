@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 
+const dev = process.env.API_DEV;
+
 const Register = () => {
     const navigate = useNavigate();
-    const API = 'http://192.168.100.85:3000/api/auth/sign-up';
+    const API = `${dev}/api/auth/sign-up`;
 
     const [user, setUser] = useState({
         name: '',
@@ -22,7 +24,6 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post(API, {name, email,password}).then(res => {
-            console.log(res);
             navigate('/');
         }).catch(err => {
             console.log('error')
