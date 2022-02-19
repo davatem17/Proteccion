@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Register = () => {
     const navigate = useNavigate();
-    const API = 'http://localhost:3000/api/auth/sign-up';
+    const API = 'http://192.168.100.85:3000/api/auth/sign-up';
 
     const [user, setUser] = useState({
         name: '',

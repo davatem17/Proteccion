@@ -6,7 +6,7 @@ import axios from 'axios';
 const Login = () => {
     const navigate = useNavigate();
     const {addToEq} = useContext(AppContext);
-    const API = 'http://localhost:3000/api/auth/sign-in';
+    const API = 'http://192.168.100.85:3000/api/auth/sign-in';
  
     const [user, setUser] = useState({
         email: '',

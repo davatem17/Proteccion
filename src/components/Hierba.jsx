@@ -5,7 +5,7 @@ import { Tabla } from './Tabla';
 
 const Hierba = () => {
     const [plantas, setPlantas] = useState([]);
-    const API = 'http://localhost:3000/api/recipes';
+    const API = 'http://192.168.100.85:3000/api/recipes';
     const { state } = useContext(AppContext);
     function func() {
         axios.get(API, {
